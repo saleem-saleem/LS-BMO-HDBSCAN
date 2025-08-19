@@ -1,0 +1,50 @@
+Steps:
+	Initialize population 
+	P_o={x_1,x_2,….,x_p }  x_i∈ R^(k*d)                                                   (1).
+	Assign mutation factors and crossover rates:
+	F_i~U{F_max,F_min}, CR~U(0,1).
+	Initialize archive A=∅, generation t=0
+	Fitness Evaluation for each individual:
+	f(X_i )=∑_(n=1)^N▒〖min〗_(1≤j≤k)  |(|x_n-c_j |)|^2,where X_i={c_1,….c_k }.       (2)
+	While t<T_max and 	H(t)>ϵ_div
+	Compute population entropy  of current centroids using:   
+	H(t)=-∑_(i=1)^k▒〖p_i (t)*log⁡(p_i (t)),where p_i (t)=n_i/N〗             (3) 
+	Fuzzy-based scaling factor: Adjust F_i using fuzzy membership on H(t).
+	For Each X_i∈P_t
+	Select X_pbest∈Top-p%,X_r,X_s∈P_t∪A,r≠s≠i.          (4)	
+	Mutation:
+	V_i=X_i+F_i (X_pbest-X_i )+F_i (X_r-X_s )                                                            (5)
+	Crossover:
+	U_(i,j=) {█(V_(i,j  ) if rand_j<CR_i  or j=j_rand@X_(i,j )      Otherwise)}                                                   (6)
+	Selection:
+	f(U_i )<f(X_i )then X_i←U_i  ,store success F_i,CR_i      (7).
+	End for.
+	Update Archive A←A∪{X_i }_replaced                                                     (8)
+	Linear Population Size Reduction
+	P(t)=P_max-t/T_max   (P_max-P_min)                                                                    (9)
+	t←t+1                                                                                                                  (10)
+	End While
+	Return best individual X^*=argmin f(X_i ).
+	Initialize bacteria population B={b_1,….,b_B }around X^*
+	For each b_j∈B
+	Perform chemotaxis
+	b_j←b_j+η*□(←┬d_j  ) , □(←┬d_j  )  N(0,1)                                                                     (11)
+	Swim: Continue move if improvement, else tumble and pick new □(←┬d_j  )
+	Apply memetic local search
+	Compute local data point influence weight:
+	Points with   w(x_i )=exp-‖x_i-μ_j ‖^2/(2σ^2 ) w(x_i)<ϵ are marked as potential outliers
+	Use weighted update rule:
+	μ_j=∑_(x_i∈j)▒(w(x_i ).x_i)/(w(x_i))                                                                                                      (12)
+	End For
+	Select refined solution C^*=argmin_(b_j )  f(b_j )                                                      (13)
+	Construct Core-Distance Graph
+	For each point〖 x〗_i compute core distance
+	core_k (x_i )=distance to s^th  nearest neighbour                                            (14)
+	Mutual Reachability Distance:
+	d_mreach (x_i,x_j )=max⁡(core_k (x_i ),core_k (x_j ),‖x_i-x_j ‖          (15)    
+	Build Minimum Spanning Tree (MST) over mutual reachability distances
+	Condensed Tree Generation using hierarchical clustering from MST
+	Extract Clusters: Select stable clusters using persistence scores
+	c=argmax_c  Stability (C)=∑_(x_i∈C)▒〖〖(λ〗_birth-λ_death 〗)                           (16)
+	Mark Noise Points Assign C_i=-1 where x_i∈/∪_j C_j
+	Return final cluster assignment vector C
