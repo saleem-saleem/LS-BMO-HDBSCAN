@@ -32,33 +32,33 @@
 - **Yeast**
   ## Steps to Run LS-BMO-HDBSCAN
 
-<p> 1. Clone the Repository
+<p><b> 1. Clone the Repository</b>
 <br>If you already pushed your repo to GitHub:</br>
 <br>git clone https://github.com/YOUR_USERNAME/LS-BMO-HDBSCAN.git</br>
 <br>cd LS-BMO-HDBSCAN</br></p>
 
-<p> 2. Create Virtual Environment (Recommended)
+<p> <b>2. Create Virtual Environment (Recommended)</b>
 
 <br>Keeps dependencies clean:</br>
 <br>python -m venv venv</br>
 <br>source venv/bin/activate   # for Linux/Mac</br>
 <br>venv\Scripts\activate      # for Windows</br></p>
 
-<p> 3. Install Dependencies
+<p> <b>3. Install Dependencies</b>
 <br>Install all required Python libraries</br>
 <br>pip install -r requirements.txt</br></p>
-<p> 4. Prepare Dataset
+<p><b> 4. Prepare Dataset</b>
 <br>Put your dataset in the data/ folder (e.g., data/sample.csv)</br>
 <br>Ensure it’s in CSV format with rows = samples, columns = feature</br>
 (No labels needed since it’s unsupervised clustering).</br></p>
-<p> 5. Run the Algorithm
+<p><b> 5. Run the Algorithm</b>
 <br>Run from terminal:</br>
 <br>python main.py --dataset data/sample.csv --min_cluster_size 15 --min_samples 5</br>
 <br>Arguments</br>
 <br>--dataset → Path to dataset</br>
 <br>--min_cluster_size → Minimum cluster size for HDBSCAN (default=15)</br>
 <br>--min_samples → Minimum samples for core points (default=5)</br></p>
-<p> 6. Outputs
+<p><b> 6. Outputs</b>
 <br>After execution, you’ll get:</br>
 <br>Cluster labels for each point</br>
 <br>Evaluation metrics (Silhouette, DBI, ARI, Jaccard, SSE, Beta Index)</br>
