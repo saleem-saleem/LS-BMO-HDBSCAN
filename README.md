@@ -30,7 +30,8 @@
 - **Wine**
 - **Steel Plate**
 - **Yeast**
-  ## Steps to Run LS-BMO-HDBSCAN
+
+## Steps to Run LS-BMO-HDBSCAN
 
 <p><b> 1. Clone the Repository</b>
 <br>If you already pushed your repo to GitHub:</br>
